@@ -319,10 +319,17 @@ if(MSVC)
 	)
 endif()
 
-set_target_properties(icestormservice
-	PROPERTIES
-		OUTPUT_NAME IceStormService${zeroc-ice_VERSION_MAJOR}${zeroc-ice_VERSION_MINOR}
-)
+if(MSVC)
+	set_target_properties(icestormservice
+		PROPERTIES
+			OUTPUT_NAME IceStormService${zeroc-ice_VERSION_MAJOR}${zeroc-ice_VERSION_MINOR}
+	)
+else()
+	set_target_properties(icestormservice
+		PROPERTIES
+			OUTPUT_NAME IceStormService
+	)
+endif()
 
 if(BUILD_SHARED_LIBS)
 	install(TARGETS icestormservice DESTINATION bin)
