@@ -86,7 +86,7 @@ if(NOT BUILD_ICE_CPP11)
 
 	set_target_properties(icebt
 		PROPERTIES
-			OUTPUT_NAME IceBT${zeroc-ice_VERSION_MAJOR}${zeroc-ice_VERSION_MINOR}
+			OUTPUT_NAME IceBT
 	)
 
 	install(TARGETS icebt DESTINATION lib)

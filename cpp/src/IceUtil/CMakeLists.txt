@@ -58,4 +58,6 @@ if(MSVC)
 	)
 endif()
 
+set_property(TARGET iceutil PROPERTY OUTPUT_NAME IceUtil)
+
 install(TARGETS iceutil DESTINATION lib)

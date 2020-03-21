@@ -42,11 +42,19 @@ if(BUILD_ICE_CPP11)
 
 	add_library(${ICEBOXLIB_TARGET})
 
-	set_target_properties(${ICEBOXLIB_TARGET} 
-		PROPERTIES
-			OUTPUT_NAME IceBox${zeroc-ice_VERSION_MAJOR}${zeroc-ice_VERSION_MINOR}++11
-			CXX_STANDARD 11
-	)
+	if(MSVC)
+		set_target_properties(${ICEBOXLIB_TARGET} 
+			PROPERTIES
+				OUTPUT_NAME IceBox${zeroc-ice_VERSION_MAJOR}${zeroc-ice_VERSION_MINOR}++11
+				CXX_STANDARD 11
+		)
+	else()
+		set_target_properties(${ICEBOXLIB_TARGET} 
+			PROPERTIES
+				OUTPUT_NAME IceBox$++11
+				CXX_STANDARD 11
+		)
+	endif()
 
 	target_link_libraries(${ICEBOXLIB_TARGET} PRIVATE ice++11)
 else()
@@ -54,10 +62,17 @@ else()
 
 	add_library(${ICEBOXLIB_TARGET})
 
-	set_target_properties(${ICEBOXLIB_TARGET} 
-		PROPERTIES
-			OUTPUT_NAME IceBox${zeroc-ice_VERSION_MAJOR}${zeroc-ice_VERSION_MINOR}
-	)
+	if(MSVC)
+		set_target_properties(${ICEBOXLIB_TARGET} 
+			PROPERTIES
+				OUTPUT_NAME IceBox${zeroc-ice_VERSION_MAJOR}${zeroc-ice_VERSION_MINOR}
+		)
+	else()
+		set_target_properties(${ICEBOXLIB_TARGET} 
+			PROPERTIES
+				OUTPUT_NAME IceBox
+		)
+	endif()
 
 	target_link_libraries(${ICEBOXLIB_TARGET} PRIVATE ice)
 endif()

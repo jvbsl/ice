@@ -50,11 +50,19 @@ if(BUILD_ICE_CPP11)
 
 	add_library(${ICEGRID_TARGET})
 
-	set_target_properties(${ICEGRID_TARGET} 
-		PROPERTIES
-			OUTPUT_NAME IceGrid${zeroc-ice_VERSION_MAJOR}${zeroc-ice_VERSION_MINOR}++11
-			CXX_STANDARD 11
-	)
+	if(MSVC)
+		set_target_properties(${ICEGRID_TARGET} 
+			PROPERTIES
+				OUTPUT_NAME IceGrid${zeroc-ice_VERSION_MAJOR}${zeroc-ice_VERSION_MINOR}++11
+				CXX_STANDARD 11
+		)
+	else()
+		set_target_properties(${ICEGRID_TARGET} 
+			PROPERTIES
+				OUTPUT_NAME IceGrid++11
+				CXX_STANDARD 11
+		)
+	endif()
 
 	target_link_libraries(${ICEGRID_TARGET}
 		PRIVATE
@@ -66,10 +74,17 @@ else()
 
 	add_library(${ICEGRID_TARGET})
 
-	set_target_properties(${ICEGRID_TARGET} 
-		PROPERTIES
-			OUTPUT_NAME IceGrid${zeroc-ice_VERSION_MAJOR}${zeroc-ice_VERSION_MINOR}
-	)
+	if(MSVC)
+		set_target_properties(${ICEGRID_TARGET} 
+			PROPERTIES
+				OUTPUT_NAME IceGrid${zeroc-ice_VERSION_MAJOR}${zeroc-ice_VERSION_MINOR}
+		)
+	else()
+		set_target_properties(${ICEGRID_TARGET} 
+			PROPERTIES
+				OUTPUT_NAME IceGrid
+		)
+	endif()
 
 	target_link_libraries(${ICEGRID_TARGET}
 		PRIVATE

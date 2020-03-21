@@ -47,10 +47,17 @@ if(MSVC)
 	)
 endif()
 
-set_target_properties(icexml 
-	PROPERTIES
-		OUTPUT_NAME IceXML${zeroc-ice_VERSION_MAJOR}${zeroc-ice_VERSION_MINOR}
-)
+if(MSVC)
+	set_target_properties(icexml 
+		PROPERTIES
+			OUTPUT_NAME IceXML${zeroc-ice_VERSION_MAJOR}${zeroc-ice_VERSION_MINOR}
+	)
+else()
+	set_target_properties(icexml 
+		PROPERTIES
+			OUTPUT_NAME IceXML
+	)
+endif()
 
 if(BUILD_SHARED_LIBS)
 	install(TARGETS icexml DESTINATION bin)

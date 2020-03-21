@@ -62,11 +62,19 @@ if(BUILD_ICE_CPP11)
 
 	add_library(${ICESSL_TARGET})
 
-	set_target_properties(${ICESSL_TARGET} 
-		PROPERTIES
-			OUTPUT_NAME IceSSL${zeroc-ice_VERSION_MAJOR}${zeroc-ice_VERSION_MINOR}++11
-			CXX_STANDARD 11
-	)
+	if(MSVC)
+		set_target_properties(${ICESSL_TARGET} 
+			PROPERTIES
+				OUTPUT_NAME IceSSL${zeroc-ice_VERSION_MAJOR}${zeroc-ice_VERSION_MINOR}++11
+				CXX_STANDARD 11
+		)
+	else()
+		set_target_properties(${ICESSL_TARGET} 
+			PROPERTIES
+				OUTPUT_NAME IceSSL++11
+				CXX_STANDARD 11
+		)
+	endif()
 
 	target_link_libraries(${ICESSL_TARGET} PRIVATE ice++11)
 else()
@@ -74,10 +82,17 @@ else()
 
 	add_library(${ICESSL_TARGET})
 
-	set_target_properties(${ICESSL_TARGET} 
-		PROPERTIES
-			OUTPUT_NAME IceSSL${zeroc-ice_VERSION_MAJOR}${zeroc-ice_VERSION_MINOR}
-	)
+	if(MSVC)
+		set_target_properties(${ICESSL_TARGET} 
+			PROPERTIES
+				OUTPUT_NAME IceSSL${zeroc-ice_VERSION_MAJOR}${zeroc-ice_VERSION_MINOR}
+		)
+	else()
+		set_target_properties(${ICESSL_TARGET} 
+			PROPERTIES
+				OUTPUT_NAME IceSSL
+		)
+	endif()
 
 	target_link_libraries(${ICESSL_TARGET} PRIVATE ice)
 endif()
@@ -189,20 +204,35 @@ if(BUILD_ICE_CPP11)
 
 	add_library(${ICESSL_OPENSSL_TARGET})
 
-	set_target_properties(${ICESSL_OPENSSL_TARGET} 
-		PROPERTIES
-			OUTPUT_NAME IceSSLOpenSSL${zeroc-ice_VERSION_MAJOR}${zeroc-ice_VERSION_MINOR}++11
-			CXX_STANDARD 11
-	)
+	if(MSVC)
+		set_target_properties(${ICESSL_OPENSSL_TARGET} 
+			PROPERTIES
+				OUTPUT_NAME IceSSLOpenSSL${zeroc-ice_VERSION_MAJOR}${zeroc-ice_VERSION_MINOR}++11
+				CXX_STANDARD 11
+		)
+	else()
+		set_target_properties(${ICESSL_OPENSSL_TARGET} 
+			PROPERTIES
+				OUTPUT_NAME IceSSLOpenSSL++11
+				CXX_STANDARD 11
+		)
+	endif()
 else()
 	set(ICESSL_OPENSSL_TARGET icesslopenssl)
 
 	add_library(${ICESSL_OPENSSL_TARGET})
 
-	set_target_properties(${ICESSL_OPENSSL_TARGET} 
-		PROPERTIES
-			OUTPUT_NAME IceSSLOpenSSL${zeroc-ice_VERSION_MAJOR}${zeroc-ice_VERSION_MINOR}
-	)
+	if(MSVC)
+		set_target_properties(${ICESSL_OPENSSL_TARGET} 
+			PROPERTIES
+				OUTPUT_NAME IceSSLOpenSSL${zeroc-ice_VERSION_MAJOR}${zeroc-ice_VERSION_MINOR}
+		)
+	else()
+		set_target_properties(${ICESSL_OPENSSL_TARGET} 
+			PROPERTIES
+				OUTPUT_NAME IceSSLOpenSSL
+		)
+	endif()
 endif()
 
 target_sources(${ICESSL_OPENSSL_TARGET}

@@ -55,10 +55,17 @@ if(NOT BUILD_ICE_CPP11)
 		)
 	endif()
 
-	set_target_properties(glacier2cryptpermissionsverifier 
-		PROPERTIES
-			OUTPUT_NAME Glacier2CryptPermissionsVerifier${zeroc-ice_VERSION_MAJOR}${zeroc-ice_VERSION_MINOR}
-	)
+	if(MSVC)
+		set_target_properties(glacier2cryptpermissionsverifier 
+			PROPERTIES
+				OUTPUT_NAME Glacier2CryptPermissionsVerifier${zeroc-ice_VERSION_MAJOR}${zeroc-ice_VERSION_MINOR}
+		)
+	else()
+		set_target_properties(glacier2cryptpermissionsverifier 
+			PROPERTIES
+				OUTPUT_NAME Glacier2CryptPermissionsVerifier
+		)
+	endif()
 
 	if(BUILD_SHARED_LIBS)
 		install(TARGETS glacier2cryptpermissionsverifier 

@@ -103,10 +103,17 @@ if(NOT BUILD_ICE_CPP11)
 		)
 	endif()
 
-	set_target_properties(icepatch2
-		PROPERTIES
-			OUTPUT_NAME IcePatch2${zeroc-ice_VERSION_MAJOR}${zeroc-ice_VERSION_MINOR}
-	)
+	if(MSVC)
+		set_target_properties(icepatch2
+			PROPERTIES
+				OUTPUT_NAME IcePatch2${zeroc-ice_VERSION_MAJOR}${zeroc-ice_VERSION_MINOR}
+		)
+	else()
+		set_target_properties(icepatch2
+			PROPERTIES
+				OUTPUT_NAME IcePatch2
+		)
+	endif()
 
 	if(BUILD_SHARED_LIBS)
 		install(TARGETS icepatch2 DESTINATION bin)

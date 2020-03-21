@@ -41,11 +41,19 @@ if(BUILD_ICE_CPP11)
 
 	add_library(${ICEDISCOVERY_TARGET})
 
-	set_target_properties(${ICEDISCOVERY_TARGET} 
-		PROPERTIES
-			OUTPUT_NAME IceDiscovery${zeroc-ice_VERSION_MAJOR}${zeroc-ice_VERSION_MINOR}++11
-			CXX_STANDARD 11
-	)
+	if(MSVC)
+		set_target_properties(${ICEDISCOVERY_TARGET} 
+			PROPERTIES
+				OUTPUT_NAME IceDiscovery${zeroc-ice_VERSION_MAJOR}${zeroc-ice_VERSION_MINOR}++11
+				CXX_STANDARD 11
+		)
+	else()
+		set_target_properties(${ICEDISCOVERY_TARGET} 
+			PROPERTIES
+				OUTPUT_NAME IceDiscovery++11
+				CXX_STANDARD 11
+		)
+	endif()
 
 	target_link_libraries(${ICEDISCOVERY_TARGET} PRIVATE ice++11)
 else()
@@ -53,10 +61,17 @@ else()
 
 	add_library(${ICEDISCOVERY_TARGET})
 
-	set_target_properties(${ICEDISCOVERY_TARGET} 
-		PROPERTIES
-			OUTPUT_NAME IceDiscovery${zeroc-ice_VERSION_MAJOR}${zeroc-ice_VERSION_MINOR}
-	)
+	if(MSVC)
+		set_target_properties(${ICEDISCOVERY_TARGET} 
+			PROPERTIES
+				OUTPUT_NAME IceDiscovery${zeroc-ice_VERSION_MAJOR}${zeroc-ice_VERSION_MINOR}
+		)
+	else()
+		set_target_properties(${ICEDISCOVERY_TARGET} 
+			PROPERTIES
+				OUTPUT_NAME IceDiscovery
+		)
+	endif()
 
 	target_link_libraries(${ICEDISCOVERY_TARGET} PRIVATE ice)
 endif()

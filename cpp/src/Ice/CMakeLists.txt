@@ -310,20 +310,35 @@ if(BUILD_ICE_CPP11)
 
 	add_library(${ICE_TARGET})
 
-	set_target_properties(${ICE_TARGET} 
-		PROPERTIES
-			OUTPUT_NAME Ice${zeroc-ice_VERSION_MAJOR}${zeroc-ice_VERSION_MINOR}++11
-			CXX_STANDARD 11
-	)
+	if(MSVC)
+		set_target_properties(${ICE_TARGET} 
+			PROPERTIES
+				OUTPUT_NAME Ice${zeroc-ice_VERSION_MAJOR}${zeroc-ice_VERSION_MINOR}++11
+				CXX_STANDARD 11
+		)
+	else()
+		set_target_properties(${ICE_TARGET} 
+			PROPERTIES
+				OUTPUT_NAME Ice++11
+				CXX_STANDARD 11
+		)
+	endif()
 else()
 	set(ICE_TARGET ice)
 
 	add_library(${ICE_TARGET})
 
-	set_target_properties(${ICE_TARGET} 
-		PROPERTIES
-			OUTPUT_NAME Ice${zeroc-ice_VERSION_MAJOR}${zeroc-ice_VERSION_MINOR}
-	)
+	if(MSVC)
+		set_target_properties(${ICE_TARGET} 
+			PROPERTIES
+				OUTPUT_NAME Ice${zeroc-ice_VERSION_MAJOR}${zeroc-ice_VERSION_MINOR}
+		)
+	else()
+		set_target_properties(${ICE_TARGET} 
+			PROPERTIES
+				OUTPUT_NAME Ice
+		)
+	endif()
 endif()
 
 target_sources(${ICE_TARGET} 

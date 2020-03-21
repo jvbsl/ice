@@ -48,10 +48,17 @@ if(NOT BUILD_ICE_CPP11)
 		)
 	endif()
 
-	set_target_properties(icedb
-		PROPERTIES
-			OUTPUT_NAME IceDB${zeroc-ice_VERSION_MAJOR}${zeroc-ice_VERSION_MINOR}
-	)
+	if(MSVC)
+		set_target_properties(icedb
+			PROPERTIES
+				OUTPUT_NAME IceDB${zeroc-ice_VERSION_MAJOR}${zeroc-ice_VERSION_MINOR}
+		)
+	else()
+		set_target_properties(icedb
+			PROPERTIES
+				OUTPUT_NAME IceDB
+		)
+	endif()
 
 	if(BUILD_SHARED_LIBS)
 		install(TARGETS icedb DESTINATION bin)
