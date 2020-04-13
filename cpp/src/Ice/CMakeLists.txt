@@ -411,7 +411,6 @@ if(MSVC)
 	target_sources(${ICE_TARGET}
 		PRIVATE
 			DLLMain.cpp
-			EventLoggerMsg.mc
 			Ice.rc
 			${GENERATED_ICE_RESOURCES}
 	)
