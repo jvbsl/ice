@@ -56,6 +56,8 @@ if(MSVC)
 		PRIVATE
 			${ICE_MSVC_COMPILE_OPTIONS}
 	)
+
+	target_link_libraries(iceutil PRIVATE rpcrt4.lib)
 endif()
 
 set_property(TARGET iceutil PROPERTY OUTPUT_NAME IceUtil)
